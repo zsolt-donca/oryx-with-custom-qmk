@@ -181,3 +181,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 void matrix_scan_user(void) {
   achordion_task();
 }
+
+bool achordion_eager_mod(uint8_t mod) {
+  return (mod & (MOD_LALT)) == 0;
+}
