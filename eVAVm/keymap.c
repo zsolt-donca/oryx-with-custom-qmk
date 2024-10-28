@@ -182,10 +182,6 @@ void matrix_scan_user(void) {
   achordion_task();
 }
 
-bool achordion_eager_mod(uint8_t mod) {
-  return (mod & (MOD_LALT)) == 0;
-}
-
 bool achordion_chord(uint16_t tap_hold_keycode,
                      keyrecord_t* tap_hold_record,
                      uint16_t other_keycode,
