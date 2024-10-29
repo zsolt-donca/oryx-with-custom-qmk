@@ -4,12 +4,12 @@
 */
 
 #undef TAPPING_TERM
-#define TAPPING_TERM 175
+#define TAPPING_TERM 350
 
 #define PERMISSIVE_HOLD
 
 #define USB_SUSPEND_WAKEUP_DELAY 0
-#define SERIAL_NUMBER "eVAVm/O7aw3"
+#define SERIAL_NUMBER "eVAVm/gPa0q"
 #define LAYER_STATE_8BIT
 
 #define TAPPING_TERM_PER_KEY
