@@ -88,16 +88,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case LT(3,KC_SPACE):
-            return TAPPING_TERM + 25;
-        case LT(6,KC_BSPC):
-            return TAPPING_TERM + 25;
-        default:
-            return TAPPING_TERM;
-    }
-}
 
 extern rgb_config_t rgb_matrix_config;
 
