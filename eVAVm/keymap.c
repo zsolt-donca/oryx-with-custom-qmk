@@ -237,8 +237,8 @@ bool achordion_chord(uint16_t tap_hold_keycode,
 
   // also, if the other key is a tab or enter, I want to allow chords with them.
   switch (other_keycode) {
-    case LT(4,KC_TAB):
-    case KC_ENTER:
+    case LT(6,KC_BSPC):
+    case LT(7,KC_ENTER):
       return true;
       break;
   }
