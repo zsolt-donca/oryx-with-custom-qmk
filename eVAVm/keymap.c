@@ -212,3 +212,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 void matrix_scan_user(void) {
   achordion_task();
 }
+
+bool achordion_chord(uint16_t tap_hold_keycode,
+                     keyrecord_t* tap_hold_record,
+                     uint16_t other_keycode,
+                     keyrecord_t* other_record) {
+  // the four thumb keys are allocated to space, tab, backspace, and enter, and all have tap-hold functions.
+  switch (tap_hold_keycode) {
+    case LT(3,KC_SPACE):
+    case LT(4,KC_TAB):
+    case LT(5,KC_BSPC):
+    case LT(7,KC_ENTER):
+      return true;
+      break;
+  }
+
+  switch (other_keycode) {
+    case LT(3,KC_SPACE):
+    case LT(4,KC_TAB):
+    case LT(5,KC_BSPC):
+    case LT(7,KC_ENTER):
+      return true;
+      break;
+  }
+
+  // Otherwise, follow the opposite hands rule.
+  return achordion_opposite_hands(tap_hold_record, other_record);
+}
