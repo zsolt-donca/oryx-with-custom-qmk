@@ -212,27 +212,3 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 void matrix_scan_user(void) {
   achordion_task();
 }
-
-bool achordion_chord(uint16_t tap_hold_keycode,
-                     keyrecord_t* tap_hold_record,
-                     uint16_t other_keycode,
-                     keyrecord_t* other_record) {
-  // the space and backspace characters are below the normal letter keys, so I want to allow chords with them.
-  switch (tap_hold_keycode) {
-    case LT(3,KC_SPACE):
-    case LT(4,KC_TAB):
-      return true;
-      break;
-  }
-
-  // also, if the other key is a tab or enter, I want to allow chords with them.
-  switch (other_keycode) {
-    case LT(6,KC_BSPC):
-    case LT(7,KC_ENTER):
-      return true;
-      break;
-  }
-
-  // Otherwise, follow the opposite hands rule.
-  return achordion_opposite_hands(tap_hold_record, other_record);
-}
