@@ -220,7 +220,7 @@ bool achordion_chord(uint16_t tap_hold_keycode,
   // the space and backspace characters are below the normal letter keys, so I want to allow chords with them.
   switch (tap_hold_keycode) {
     case LT(3,KC_SPACE):
-    case LT(4,KC_BSPC):
+    case LT(4,KC_TAB):
       return true;
       break;
   }
