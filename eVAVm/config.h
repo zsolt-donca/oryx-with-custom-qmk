@@ -3,8 +3,10 @@
   See config.h options at https://docs.qmk.fm/#/config_options?id=the-configh-file
 */
 
+#define PERMISSIVE_HOLD
+
 #define USB_SUSPEND_WAKEUP_DELAY 0
-#define SERIAL_NUMBER "eVAVm/E0K0v"
+#define SERIAL_NUMBER "eVAVm/Zg4Z7"
 #define LAYER_STATE_16BIT
 
 #define TAPPING_TERM_PER_KEY
