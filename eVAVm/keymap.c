@@ -102,7 +102,15 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case TD(DANCE_0):
             return TAPPING_TERM + 150;
+        case MT(MOD_LGUI, KC_A):
+            return TAPPING_TERM + 150;
+        case MT(MOD_LALT, KC_R):
+            return TAPPING_TERM + 150;
         case LT(9,KC_Z):
+            return TAPPING_TERM + 150;
+        case MT(MOD_LALT, KC_I):
+            return TAPPING_TERM + 150;
+        case MT(MOD_LGUI, KC_O):
             return TAPPING_TERM + 150;
         default:
             return TAPPING_TERM;
