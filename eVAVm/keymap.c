@@ -238,8 +238,8 @@ bool achordion_chord(uint16_t tap_hold_keycode,
   switch (tap_hold_keycode) {
     case LT(3,KC_SPACE):
       switch (other_keycode) {
-        case KC_BSPC:
-        case KC_ENTER:
+        case KC_DELETE:
+        case KC_ESCAPE:
           return true;
       }
       break;
