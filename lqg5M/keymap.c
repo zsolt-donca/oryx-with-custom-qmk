@@ -1,5 +1,7 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
+#include "features/achordion.h"
+
 #define MOON_LED_LEVEL LED_LEVEL
 #define ML_SAFE_RANGE SAFE_RANGE
 
@@ -205,6 +207,18 @@ bool rgb_matrix_indicators_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (!process_achordion(keycode, record)) { return false; }
+  // Get the layer associated with this event.
+  const uint8_t layer = read_source_layers_cache(record->event.key);
+
+  // layers 5 and 6 are my symbols layer, so I want to clear any weak mods to avoid rolling keys messing up symbols.
+  if ((layer == 5 || layer == 6) && record->event.pressed) {
+    // Clear any weak mods left over from the previous key.
+    clear_weak_mods();
+    // Send a report to the host computer to reflect the cleared mods.
+    send_keyboard_report();
+  }
+
   switch (keycode) {
 
     case RGB_SLD:
@@ -286,3 +300,27 @@ void dance_0_reset(tap_dance_state_t *state, void *user_data) {
 tap_dance_action_t tap_dance_actions[] = {
         [DANCE_0] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_0_finished, dance_0_reset),
 };
+
+
+void matrix_scan_user(void) {
+  achordion_task();
+}
+
+bool achordion_chord(uint16_t tap_hold_keycode,
+                     keyrecord_t* tap_hold_record,
+                     uint16_t other_keycode,
+                     keyrecord_t* other_record) {
+  switch (tap_hold_keycode) {
+    case LT(3,KC_SPACE):
+      switch (other_keycode) {
+        case KC_DELETE:
+        case KC_ESCAPE:
+          return true;
+      }
+      break;
+  }
+
+  // Otherwise, follow the opposite hands rule.
+  return achordion_opposite_hands(tap_hold_record, other_record);
+}
+
