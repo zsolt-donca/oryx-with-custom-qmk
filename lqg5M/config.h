@@ -4,12 +4,12 @@
 */
 
 #undef TAPPING_TERM
-#define TAPPING_TERM 175
+#define TAPPING_TERM 150
 
 #define PERMISSIVE_HOLD
 
 #define USB_SUSPEND_WAKEUP_DELAY 0
-#define SERIAL_NUMBER "lqg5M/BBQeA"
+#define SERIAL_NUMBER "lqg5M/dmx3g"
 #define LAYER_STATE_16BIT
 
 #define TAPPING_TERM_PER_KEY
