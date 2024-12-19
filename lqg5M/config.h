@@ -6,7 +6,7 @@
 #define PERMISSIVE_HOLD
 
 #define USB_SUSPEND_WAKEUP_DELAY 0
-#define SERIAL_NUMBER "lqg5M/pGe7b"
+#define SERIAL_NUMBER "lqg5M/baAo5"
 #define LAYER_STATE_16BIT
 
 #define TAPPING_TERM_PER_KEY
