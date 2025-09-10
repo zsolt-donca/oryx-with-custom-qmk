@@ -1,5 +1,7 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
+#include "features/achordion.h"
+
 #define MOON_LED_LEVEL LED_LEVEL
 #ifndef ZSA_SAFE_RANGE
 #define ZSA_SAFE_RANGE SAFE_RANGE
@@ -206,6 +208,8 @@ extern bool navigator_aim;
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (!process_achordion(keycode, record)) { return false; }
+
   switch (keycode) {
   case QK_MODS ... QK_MODS_MAX: 
     // Mouse keys with modifiers work inconsistently across operating systems, this makes sure that modifiers are always
@@ -286,3 +290,35 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 }
+
+void matrix_scan_user(void) {
+  achordion_task();
+}
+
+bool achordion_chord(uint16_t tap_hold_keycode,
+                     keyrecord_t* tap_hold_record,
+                     uint16_t other_keycode,
+                     keyrecord_t* other_record) {
+  switch (tap_hold_keycode) {
+    case LT(3,KC_SPACE):
+      switch (other_keycode) {
+        case KC_DELETE:
+        case KC_ESCAPE:
+          return true;
+      }
+      break;
+    case LT(7, KC_TAB):
+      switch (other_keycode) {
+        case MT(MOD_LALT, KC_R):
+        case MT(MOD_LCTL, KC_S):
+        case MT(MOD_LSFT, KC_T):
+        case LT(5, KC_D):
+          return true;
+      }
+      break;
+  }
+
+  // Otherwise, follow the opposite hands rule.
+  return achordion_opposite_hands(tap_hold_record, other_record);
+}
+
