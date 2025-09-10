@@ -7,3 +7,5 @@ CAPS_WORD_ENABLE = yes
 LAYER_LOCK_ENABLE = yes
 POINTING_DEVICE_ENABLE = yes
 POINTING_DEVICE_DRIVER = navigator_trackball
+
+SRC += features/achordion.c
