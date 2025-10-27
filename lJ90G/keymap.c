@@ -210,6 +210,9 @@ extern bool navigator_aim;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (!process_achordion(keycode, record)) { return false; }
 
+  // Get the layer associated with this event.
+  const uint8_t layer = read_source_layers_cache(record->event.key);
+
   // layers 5 and 6 are my symbols layer, so I want to clear any weak mods to avoid rolling keys messing up symbols.
   if ((layer == 5 || layer == 6) && record->event.pressed) {
     // Clear any weak mods left over from the previous key.
