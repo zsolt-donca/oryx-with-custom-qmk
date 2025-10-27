@@ -210,6 +210,14 @@ extern bool navigator_aim;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (!process_achordion(keycode, record)) { return false; }
 
+  // layers 5 and 6 are my symbols layer, so I want to clear any weak mods to avoid rolling keys messing up symbols.
+  if ((layer == 5 || layer == 6) && record->event.pressed) {
+    // Clear any weak mods left over from the previous key.
+    clear_weak_mods();
+    // Send a report to the host computer to reflect the cleared mods.
+    send_keyboard_report();
+  }
+  
   switch (keycode) {
   case QK_MODS ... QK_MODS_MAX: 
     // Mouse keys with modifiers work inconsistently across operating systems, this makes sure that modifiers are always
